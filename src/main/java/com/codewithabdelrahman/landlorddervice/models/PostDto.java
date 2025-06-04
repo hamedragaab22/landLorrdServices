@@ -4,45 +4,46 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 
 public class PostDto {
-    @NotBlank(message = "Neighborhood is required")
     private String neighborhood;
 
-    @NotBlank(message = "Street is required")
     private String street;
 
-    @NotBlank(message = "Building number is required")
     private String buildingNumber;
 
-    @NotBlank(message = "Apartment number is required")
     private String apartmentNumber;
 
     @Positive(message = "Area must be a positive number")
-    private double area;
+    @NotNull(message = "Area is required")
+    private Double area;
 
     @PositiveOrZero(message = "Number of rooms must be zero or positive")
-    private int numberOfRooms;
+    @NotNull(message = "Number of rooms is required")
+    private Integer numberOfRooms;
 
     @PositiveOrZero(message = "Number of bathrooms must be zero or positive")
-    private int numberOfBathrooms;
+    @NotNull(message = "Number of bathrooms is required")
+    private Integer numberOfBathrooms;
 
-    private boolean hasInternet;
+    private Boolean hasInternet;
 
-    private boolean hasNaturalGas;
+    private Boolean hasNaturalGas;
 
     @PositiveOrZero(message = "Number of beds must be zero or positive")
-    private int numberOfBeds;
+    private Integer numberOfBeds;
 
-    private boolean isFavorite;
+    private Boolean isFavorite;
 
     @Positive(message = "Rent must be a positive number")
-    private double rent;
+    @NotNull(message = "Rent is required")
+    private Double rent;
 
-    private int floorNumber;
+    private Integer floorNumber;
 
-    private boolean hasElevator;
+    private Boolean hasElevator;
 
     private List<String> nearbyServices;
 
+    @NotBlank(message = "Notes are required")
     private String notes;
 
     @NotEmpty(message = "At least one image is required")
@@ -57,26 +58,26 @@ public class PostDto {
     public void setBuildingNumber(String buildingNumber) { this.buildingNumber = buildingNumber; }
     public String getApartmentNumber() { return apartmentNumber; }
     public void setApartmentNumber(String apartmentNumber) { this.apartmentNumber = apartmentNumber; }
-    public double getArea() { return area; }
-    public void setArea(double area) { this.area = area; }
-    public int getNumberOfRooms() { return numberOfRooms; }
-    public void setNumberOfRooms(int numberOfRooms) { this.numberOfRooms = numberOfRooms; }
-    public int getNumberOfBathrooms() { return numberOfBathrooms; }
-    public void setNumberOfBathrooms(int numberOfBathrooms) { this.numberOfBathrooms = numberOfBathrooms; }
-    public boolean isHasInternet() { return hasInternet; }
-    public void setHasInternet(boolean hasInternet) { this.hasInternet = hasInternet; }
-    public boolean isHasNaturalGas() { return hasNaturalGas; }
-    public void setHasNaturalGas(boolean hasNaturalGas) { this.hasNaturalGas = hasNaturalGas; }
-    public int getNumberOfBeds() { return numberOfBeds; }
-    public void setNumberOfBeds(int numberOfBeds) { this.numberOfBeds = numberOfBeds; }
-    public boolean isFavorite() { return isFavorite; }
-    public void setFavorite(boolean favorite) { isFavorite = favorite; }
-    public double getRent() { return rent; }
-    public void setRent(double rent) { this.rent = rent; }
-    public int getFloorNumber() { return floorNumber; }
-    public void setFloorNumber(int floorNumber) { this.floorNumber = floorNumber; }
-    public boolean isHasElevator() { return hasElevator; }
-    public void setHasElevator(boolean hasElevator) { this.hasElevator = hasElevator; }
+    public Double getArea() { return area; }
+    public void setArea(Double area) { this.area = area; }
+    public Integer getNumberOfRooms() { return numberOfRooms; }
+    public void setNumberOfRooms(Integer numberOfRooms) { this.numberOfRooms = numberOfRooms; }
+    public Integer getNumberOfBathrooms() { return numberOfBathrooms; }
+    public void setNumberOfBathrooms(Integer numberOfBathrooms) { this.numberOfBathrooms = numberOfBathrooms; }
+    public Boolean isHasInternet() { return hasInternet; }
+    public void setHasInternet(Boolean hasInternet) { this.hasInternet = hasInternet; }
+    public Boolean isHasNaturalGas() { return hasNaturalGas; }
+    public void setHasNaturalGas(Boolean hasNaturalGas) { this.hasNaturalGas = hasNaturalGas; }
+    public Integer getNumberOfBeds() { return numberOfBeds; }
+    public void setNumberOfBeds(Integer numberOfBeds) { this.numberOfBeds = numberOfBeds; }
+    public Boolean isFavorite() { return isFavorite; }
+    public void setFavorite(Boolean favorite) { isFavorite = favorite; }
+    public Double getRent() { return rent; }
+    public void setRent(Double rent) { this.rent = rent; }
+    public Integer getFloorNumber() { return floorNumber; }
+    public void setFloorNumber(Integer floorNumber) { this.floorNumber = floorNumber; }
+    public Boolean isHasElevator() { return hasElevator; }
+    public void setHasElevator(Boolean hasElevator) { this.hasElevator = hasElevator; }
     public List<String> getNearbyServices() { return nearbyServices; }
     public void setNearbyServices(List<String> nearbyServices) { this.nearbyServices = nearbyServices; }
     public String getNotes() { return notes; }

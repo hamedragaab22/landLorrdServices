@@ -296,6 +296,7 @@ public class AccountController {
                 response.put("errors", errorsMap);
                 return ResponseEntity.badRequest().body(response);
             }
+
             // Validate token
             if (token.startsWith("Bearer ")) {
                 token = token.substring(7);
@@ -310,27 +311,34 @@ public class AccountController {
                 response.put("message", "User not found.");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
             }
-            // Create post
+
+            // Create post - only set fields that are provided
             Post post = new Post();
             post.setUserId(appUser.getId());
-            post.setNeighborhood(postDto.getNeighborhood());
-            post.setStreet(postDto.getStreet());
-            post.setBuildingNumber(postDto.getBuildingNumber());
-            post.setApartmentNumber(postDto.getApartmentNumber());
+
+            // Required fields
             post.setArea(postDto.getArea());
             post.setNumberOfRooms(postDto.getNumberOfRooms());
             post.setNumberOfBathrooms(postDto.getNumberOfBathrooms());
-            post.setHasInternet(postDto.isHasInternet());
-            post.setHasNaturalGas(postDto.isHasNaturalGas());
-            post.setNumberOfBeds(postDto.getNumberOfBeds());
-            post.setFavorite(postDto.isFavorite());
             post.setRent(postDto.getRent());
-            post.setFloorNumber(postDto.getFloorNumber());
-            post.setHasElevator(postDto.isHasElevator());
-            post.setNearbyServices(postDto.getNearbyServices());
             post.setNotes(postDto.getNotes());
-            post.setCreatedAt(new Date());
             post.setImages(postDto.getImages());
+
+            // Optional fields (only set if they're not null)
+            if (postDto.getNeighborhood() != null) post.setNeighborhood(postDto.getNeighborhood());
+            if (postDto.getStreet() != null) post.setStreet(postDto.getStreet());
+            if (postDto.getBuildingNumber() != null) post.setBuildingNumber(postDto.getBuildingNumber());
+            if (postDto.getApartmentNumber() != null) post.setApartmentNumber(postDto.getApartmentNumber());
+            if (postDto.isHasInternet() != null) post.setHasInternet(postDto.isHasInternet());
+            if (postDto.isHasNaturalGas() != null) post.setHasNaturalGas(postDto.isHasNaturalGas());
+            if (postDto.getNumberOfBeds() != null) post.setNumberOfBeds(postDto.getNumberOfBeds());
+            if (postDto.isFavorite() != null) post.setFavorite(postDto.isFavorite());
+            if (postDto.getFloorNumber() != null) post.setFloorNumber(postDto.getFloorNumber());
+            if (postDto.isHasElevator() != null) post.setHasElevator(postDto.isHasElevator());
+            if (postDto.getNearbyServices() != null) post.setNearbyServices(postDto.getNearbyServices());
+
+            post.setCreatedAt(new Date());
+
             // Save post
             post = postRepository.save(post);
             response.put("status", true);
